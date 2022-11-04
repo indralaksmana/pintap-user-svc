@@ -1,0 +1,27 @@
+version: "3.7"
+
+services:
+  database:
+    image: postgres:14-alpine
+    environment:
+      POSTGRES_USER: pintap
+      POSTGRES_PASSWORD: randompassword
+      POSTGRES_DB: pintap_db
+    ports:
+      - 127.0.0.1:5432:5432
+    networks:
+      app-net:
+        aliases:
+          - postgres
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+networks:
+  app-net:
+    driver: bridge
+
+volumes:
+  pg_data:
+    driver: local
