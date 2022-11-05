@@ -4,8 +4,12 @@
     "paths": {
       "@functions/*": ["src/functions/*"],
       "@services/*": ["src/services/*"],
-      "@helpers/*": ["src/helpers/*"],
-      "@libs/*": ["src/libs/*"]
+      "@utils/*": ["src/utils/*"],
+      "@configs/*": ["src/configs/*"],
+      "@libs/*": ["src/libs/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@usecases/*": ["src/usecases/*"],
+      "@middlewares/*": ["src/middlewares/*"]
     }
   }
 }

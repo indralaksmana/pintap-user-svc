@@ -9,6 +9,9 @@
   "engines": {
     "node": ">=14.15.0"
   },
+  "prisma": {
+    "schema": "src/configs/database/prisma/schema.prisma"
+  },
   "dependencies": {
     "@middy/core": "^3.4.0",
     "@middy/http-json-body-parser": "^3.4.0",
@@ -18,12 +21,15 @@
     "prisma": "^4.5.0"
   },
   "devDependencies": {
+    "@middy/http-header-normalizer": "^3.6.2",
     "@serverless/typescript": "^3.0.0",
     "@types/aws-lambda": "^8.10.71",
     "@types/node": "^14.14.25",
-    "esbuild": "^0.14.11",
+    "@types/uuid": "^8.3.4",
+    "esbuild": "^0.15.13",
     "json-schema-to-ts": "^1.5.0",
     "serverless": "^3.0.0",
+    "serverless-dotenv-plugin": "^4.0.2",
     "serverless-esbuild": "^1.33.1",
     "serverless-offline": "^11.2.3",
     "ts-node": "^10.4.0",
