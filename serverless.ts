@@ -1,5 +1,8 @@
 import type { AWS } from '@serverless/typescript';
+
 import { createUser, getUser, getAllUsers, updateUser, deleteUser } from '@functions/user';
+import { login, verifyToken } from '@functions/auth';
+
 const serverlessConfiguration: AWS = {
   service: 'aws-serverless-typescript-api',
   frameworkVersion: '3',
@@ -17,7 +20,15 @@ const serverlessConfiguration: AWS = {
     },
   },
   // import the function via paths
-  functions: { getAllUsers, createUser, getUser, updateUser, deleteUser },
+  functions: { 
+    getAllUsers, 
+    createUser, 
+    getUser, 
+    updateUser, 
+    deleteUser,
+    login,
+    verifyToken
+  },
   package: { 
     individually: true,
     patterns: [

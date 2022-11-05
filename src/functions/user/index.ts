@@ -7,6 +7,7 @@ export const getAllUsers = {
             http: {
                 method: 'get',
                 path: 'user/',
+                authorizer: 'verifyToken'
             },
         },
     ],
@@ -19,6 +20,7 @@ export const createUser = {
             http: {
                 method: 'post',
                 path: 'user',
+                authorizer: 'verifyToken'
             },
         },
     ],
@@ -31,6 +33,7 @@ export const getUser = {
             http: {
                 method: 'get',
                 path: 'user/{id}',
+                authorizer: 'verifyToken'
             },
         },
     ],
@@ -43,6 +46,7 @@ export const updateUser = {
             http: {
                 method: 'put',
                 path: 'user/{id}',
+                authorizer: 'verifyToken'
             },
         },
     ],
@@ -55,6 +59,7 @@ export const deleteUser = {
             http: {
                 method: 'delete',
                 path: 'user/{id}',
+                authorizer: 'verifyToken'
             },
         },
     ],

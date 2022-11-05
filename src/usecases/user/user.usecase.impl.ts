@@ -1,7 +1,12 @@
+import { Prisma } from '@configs/database/prisma'
+
 import IUserUseCase from "./user.usecase.intfc";
 import IUserRepository from '@repositories/user/user.repository.intfc';
 import UserRepository from '@repositories/user/user.repository.impl';
-import { User } from '@configs/entities/user.entity';
+
+import { formatJSONResponse } from '@libs/api-gateway';
+import { Response } from '@configs/reponse/response'
+import { HttpStatus } from "@configs/constants/http.constant";
 
 export default class UserUseCase implements IUserUseCase {
 
@@ -11,19 +16,31 @@ export default class UserUseCase implements IUserUseCase {
         this.userRepository = new UserRepository()
     }
 
-    async getAllUsers(): Promise<User[]> {
+    async getAllUsers(): Promise<Response> {
         try {
-            const allUsers = await this.userRepository.getAllUsers()
-            return allUsers
+            const data = await this.userRepository.getAllUsers()
+            return formatJSONResponse({
+                data
+            })
         } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                if (e.code === 'P2018') {
+                    return formatJSONResponse({
+                        status: HttpStatus.NotFound,
+                        message: e.message
+                    });
+                }
+            }
             throw e
         }
     }
 
-    async createUser(request: any): Promise<User> {
+    async createUser(request: any): Promise<Response> {
         try {
-            const createdUser = await this.userRepository.createUser(request)
-            return createdUser
+            const data = await this.userRepository.createUser(request)
+            return formatJSONResponse({
+                data
+            })
         } catch (e) {
             throw e
         }
@@ -31,27 +48,57 @@ export default class UserUseCase implements IUserUseCase {
 
     async getUser(userId: string): Promise<any> {
         try {
-            const user = await this.userRepository.getUser(userId)
-            return user
+            const data = await this.userRepository.getUser(userId)
+            return formatJSONResponse({
+                data
+            })
         } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                if (e.code === 'P2018') {
+                    return formatJSONResponse({
+                        status: HttpStatus.NotFound,
+                        message: e.message
+                    });
+                }
+            }
             throw e
         }
     }
 
-    async updateUser(userId: string, user: any): Promise<User> {
+    async updateUser(userId: string, user: any): Promise<Response> {
         try {
-            const updatedUser = await this.userRepository.updateUser(userId, user)
-            return updatedUser
+            const data = await this.userRepository.updateUser(userId, user)
+            return formatJSONResponse({
+                data
+            })
         } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                if (e.code === 'P2018') {
+                    return formatJSONResponse({
+                        status: HttpStatus.NotFound,
+                        message: e.message
+                    });
+                }
+            }
             throw e
         }
     }
 
-    async deleteUser(userId: string): Promise<any> {
+    async deleteUser(userId: string): Promise<Response> {
         try {
-            const deletedUser = await this.userRepository.deleteUser(userId)
-            return deletedUser
+            const data = await this.userRepository.deleteUser(userId)
+            return formatJSONResponse({
+                data
+            })
         } catch (e) {
+            if (e instanceof Prisma.PrismaClientKnownRequestError) {
+                if (e.code === 'P2018') {
+                    return formatJSONResponse({
+                        status: HttpStatus.NotFound,
+                        message: e.message
+                    });
+                }
+            }
             throw e
         }
     }

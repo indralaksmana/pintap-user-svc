@@ -1,0 +1,15 @@
+{
+  "resource": "/",
+  "path": "user/",
+  "httpMethod": "GET",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded",
+    "authorization": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJuYW1lIjoiQWRtaW4iLCJpZCI6IjI3NmRmZTczLWRmNTUtNGFiZS1iZGY0LWNjYWM5ODA0OWNjMiIsImlhdCI6MTY2NzYyNjc2NywiZXhwIjoxNjY3NzEzMTY3fQ.izv_BIbJWKsfK_a6cPNYbZyzElVOdwAdY5YAslVefVk"
+  },
+  "queryStringParameters": null,
+  "pathParameters": {
+    "id": "83734cbc-48db-4882-99d0-9a5cff0901cf"
+  },
+  "body": "",
+  "isBase64Encoded": false
+}
