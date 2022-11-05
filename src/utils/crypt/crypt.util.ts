@@ -1,14 +1,17 @@
 import * as CryptoJS from "crypto-js";
 
 class Crypt {
-    static encryptPassword(password: string) {
+    static encryptPassword(password: string): string {
         const encrypted = CryptoJS.AES.encrypt(password, 'secret')
         return encrypted.toString()
     }
 
-    static decryptPassword(password: string) {
-        const decrypted = CryptoJS.AES.decrypt(password, 'secret')
-        return decrypted.toString(CryptoJS.enc.Utf8)
+    static comparePassword(dbPassword: string, reqRassword): boolean {
+        const decrypted = CryptoJS.AES.decrypt(dbPassword, 'secret')
+        if (decrypted.toString(CryptoJS.enc.Utf8) !== reqRassword) {
+            return false
+        }
+        return true
     }
 }
 

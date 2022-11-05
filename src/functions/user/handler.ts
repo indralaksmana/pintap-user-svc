@@ -4,17 +4,16 @@ import { middyfy } from '@libs/lambda';
 
 import UserUseCase from "@usecases/user/user.usecase.impl";
 import IUserUseCase from "@usecases/user/user.usecase.intfc";
+import { HttpStatus } from "@configs/constants/http.constant";
 
 export const getAllUsers = middyfy(async (): Promise<APIGatewayProxyResult> => {
     try {
         const userUseCase: IUserUseCase = new UserUseCase()
-        const users = await userUseCase.getAllUsers()
-        return formatJSONResponse({
-            users
-        })
+        const response = await userUseCase.getAllUsers()
+        return response
     } catch (e) {
         return formatJSONResponse({
-            status: 500,
+            status: HttpStatus.InternalServerError,
             message: e.message
         });
     }
@@ -23,13 +22,11 @@ export const getAllUsers = middyfy(async (): Promise<APIGatewayProxyResult> => {
 export const createUser = middyfy(async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
         const userUseCase: IUserUseCase = new UserUseCase()
-        const user = await userUseCase.createUser(event.body)
-        return formatJSONResponse({
-            user
-        });
+        const response = await userUseCase.createUser(event.body)
+        return response
     } catch (e) {
         return formatJSONResponse({
-            status: 500,
+            status: HttpStatus.InternalServerError,
             message: e.message
         });
     }
@@ -39,13 +36,11 @@ export const getUser = middyfy(async (event: APIGatewayProxyEvent): Promise<APIG
     try {
         const id = event.pathParameters.id;
         const userUseCase: IUserUseCase = new UserUseCase()
-        const user = await userUseCase.getUser(id)
-        return formatJSONResponse({
-            user
-        });
+        const response = await userUseCase.getUser(id)
+        return response
     } catch (e) {
         return formatJSONResponse({
-            status: 500,
+            status: HttpStatus.InternalServerError,
             message: e.message
         });
     }
@@ -55,13 +50,11 @@ export const updateUser = middyfy(async (event: APIGatewayProxyEvent): Promise<A
     try {
         const id = event.pathParameters.id;
         const userUseCase: IUserUseCase = new UserUseCase()
-        const user = await userUseCase.updateUser(id, event.body)
-        return formatJSONResponse({
-            user
-        });
+        const response = await userUseCase.updateUser(id, event.body)
+        return response
     } catch (e) {
         return formatJSONResponse({
-            status: 500,
+            status: HttpStatus.InternalServerError,
             message: e.message
         });
     }
@@ -71,13 +64,11 @@ export const deleteUser = middyfy(async (event: APIGatewayProxyEvent): Promise<A
     try {
         const id = event.pathParameters.id;
         const userUseCase: IUserUseCase = new UserUseCase()
-        const user = await userUseCase.deleteUser(id)
-        return formatJSONResponse({
-            user
-        });
+        const response = await userUseCase.deleteUser(id)
+        return response
     } catch (e) {
         return formatJSONResponse({
-            status: 500,
+            status: HttpStatus.InternalServerError,
             message: e.message
         });
     }

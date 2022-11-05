@@ -1,9 +1,9 @@
-import { User } from '@configs/entities/user.entity';
+import { Response } from '@configs/reponse/response'
 
 export default interface IUserUseCase {
-    getAllUsers(): Promise<User[]>
-    createUser(request: any): Promise<User>
-    getUser(userId: string): Promise<any>
-    updateUser(userId: string, user: any): Promise<User>
-    deleteUser(userId: string): Promise<any>
+    getAllUsers(): Promise<Response>
+    createUser(request: any): Promise<Response>
+    getUser(userId: string): Promise<Response>
+    updateUser(userId: string, user: any): Promise<Response>
+    deleteUser(userId: string): Promise<Response>
 }

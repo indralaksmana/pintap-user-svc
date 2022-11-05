@@ -1,0 +1,15 @@
+{
+  "resource": "/",
+  "path": "auth/login",
+  "httpMethod": "POST",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded"
+  },
+  "queryStringParameters": null,
+  "pathParameters": null,
+  "body": {
+    "name": "Admin",
+    "password": "randompassword"
+  },
+  "isBase64Encoded": false
+}
