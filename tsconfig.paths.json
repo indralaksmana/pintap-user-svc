@@ -3,7 +3,13 @@
     "baseUrl": ".",
     "paths": {
       "@functions/*": ["src/functions/*"],
-      "@libs/*": ["src/libs/*"]
+      "@services/*": ["src/services/*"],
+      "@utils/*": ["src/utils/*"],
+      "@configs/*": ["src/configs/*"],
+      "@libs/*": ["src/libs/*"],
+      "@repositories/*": ["src/repositories/*"],
+      "@usecases/*": ["src/usecases/*"],
+      "@middlewares/*": ["src/middlewares/*"]
     }
   }
 }
