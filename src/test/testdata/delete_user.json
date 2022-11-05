@@ -1,0 +1,14 @@
+{
+  "resource": "/",
+  "path": "user/",
+  "httpMethod": "DELETE",
+  "headers": {
+    "content-type": "application/x-www-form-urlencoded"
+  },
+  "queryStringParameters": null,
+  "pathParameters": {
+    "id": "cabb14f4-6afa-4ce8-a19f-04151caf0e3f"
+  },
+  "body": "",
+  "isBase64Encoded": false
+}

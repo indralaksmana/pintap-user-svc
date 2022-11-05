@@ -1,18 +1,29 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from "aws-lambda";
 import { formatJSONResponse } from '@libs/api-gateway';
 import { middyfy } from '@libs/lambda';
-import UserService from '@services/index'
+
+import UserUseCase from "@usecases/user/user.usecase.impl";
+import IUserUseCase from "@usecases/user/user.usecase.intfc";
 
 export const getAllUsers = middyfy(async (): Promise<APIGatewayProxyResult> => {
-    const users = await UserService.getAllUsers();
-    return formatJSONResponse({
-        users
-    })
+    try {
+        const userUseCase: IUserUseCase = new UserUseCase()
+        const users = await userUseCase.getAllUsers()
+        return formatJSONResponse({
+            users
+        })
+    } catch (e) {
+        return formatJSONResponse({
+            status: 500,
+            message: e.message
+        });
+    }
 })
 
 export const createUser = middyfy(async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
     try {
-        const user = await UserService.createUser(event.body)
+        const userUseCase: IUserUseCase = new UserUseCase()
+        const user = await userUseCase.createUser(event.body)
         return formatJSONResponse({
             user
         });
@@ -25,9 +36,10 @@ export const createUser = middyfy(async (event: APIGatewayProxyEvent): Promise<A
 })
 
 export const getUser = middyfy(async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    const id = event.pathParameters.id;
     try {
-        const user = await UserService.getUser(parseInt(id))
+        const id = event.pathParameters.id;
+        const userUseCase: IUserUseCase = new UserUseCase()
+        const user = await userUseCase.getUser(id)
         return formatJSONResponse({
             user
         });
@@ -40,9 +52,10 @@ export const getUser = middyfy(async (event: APIGatewayProxyEvent): Promise<APIG
 })
 
 export const updateUser = middyfy(async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    const id = event.pathParameters.id;
     try {
-        const user = await UserService.updateUser(parseInt(id), event.body)
+        const id = event.pathParameters.id;
+        const userUseCase: IUserUseCase = new UserUseCase()
+        const user = await userUseCase.updateUser(id, event.body)
         return formatJSONResponse({
             user
         });
@@ -55,9 +68,10 @@ export const updateUser = middyfy(async (event: APIGatewayProxyEvent): Promise<A
 })
 
 export const deleteUser = middyfy(async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-    const id = event.pathParameters.id;
     try {
-        const user = await UserService.deleteUser(parseInt(id))
+        const id = event.pathParameters.id;
+        const userUseCase: IUserUseCase = new UserUseCase()
+        const user = await userUseCase.deleteUser(id)
         return formatJSONResponse({
             user
         });

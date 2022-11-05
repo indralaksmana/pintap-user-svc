@@ -3,7 +3,7 @@ import { createUser, getUser, getAllUsers, updateUser, deleteUser } from '@funct
 const serverlessConfiguration: AWS = {
   service: 'aws-serverless-typescript-api',
   frameworkVersion: '3',
-  plugins: ['serverless-esbuild', 'serverless-offline'],
+  plugins: ['serverless-esbuild', 'serverless-offline', 'serverless-dotenv-plugin'],
   provider: {
     name: 'aws',
     runtime: 'nodejs16.x',
@@ -18,7 +18,12 @@ const serverlessConfiguration: AWS = {
   },
   // import the function via paths
   functions: { getAllUsers, createUser, getUser, updateUser, deleteUser },
-  package: { individually: true },
+  package: { 
+    individually: true,
+    patterns: [
+      "src/configs/database/prisma/schema.prisma"
+    ]
+  },
   custom:{
     esbuild: {
       bundle: true,
